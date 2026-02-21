@@ -240,7 +240,7 @@ class CosmoDateAPITester:
         # Find Maria in the matches
         maria_match = None
         for match in result["potential_matches"]:
-            if match["email"] == "maria@test.com":
+            if match["email"] == self.user2_email:
                 maria_match = match
                 break
         
