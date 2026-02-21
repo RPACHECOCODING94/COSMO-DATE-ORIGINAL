@@ -1,0 +1,29 @@
+{
+  "name": "Cosmo Date",
+  "short_name": "CosmoDate",
+  "description": "Encuentra tu conexión celestial basada en compatibilidad zodiacal",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0A0A1A",
+  "theme_color": "#9D6DF3",
+  "lang": "es",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/assets/images/icon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/images/icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["social", "lifestyle"],
+  "screenshots": [],
+  "prefer_related_applications": false
+}

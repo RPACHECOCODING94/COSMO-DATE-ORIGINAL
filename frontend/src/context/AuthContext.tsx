@@ -13,7 +13,6 @@ interface User {
   preferred_gender: string;
   is_premium: boolean;
   is_admin: boolean;
-  profile_complete: boolean;
 }
 
 interface AuthContextType {
@@ -40,8 +39,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const loadStoredAuth = async () => {
     try {
-      const storedToken = await AsyncStorage.getItem('token');
-      const storedUser = await AsyncStorage.getItem('user');
+      const storedToken = await AsyncStorage.getItem('cosmo_token');
+      const storedUser = await AsyncStorage.getItem('cosmo_user');
 
       if (storedToken && storedUser) {
         setToken(storedToken);
@@ -49,42 +48,54 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         api.defaults.headers.common['Authorization'] = `Bearer ${storedToken}`;
       }
     } catch (error) {
-      console.error('Error loading auth:', error);
+      console.log('Error loading auth:', error);
     } finally {
       setIsLoading(false);
     }
   };
 
   const login = async (email: string, password: string) => {
-    const response = await api.post('/auth/login', { email, password });
-    const { token: newToken, user: userData } = response.data;
+    try {
+      const response = await api.post('/auth/login', { email, password });
+      const { token: newToken, user: userData } = response.data;
 
-    await AsyncStorage.setItem('token', newToken);
-    await AsyncStorage.setItem('user', JSON.stringify(userData));
+      await AsyncStorage.setItem('cosmo_token', newToken);
+      await AsyncStorage.setItem('cosmo_user', JSON.stringify(userData));
 
-    api.defaults.headers.common['Authorization'] = `Bearer ${newToken}`;
-    setToken(newToken);
-    setUser(userData);
+      api.defaults.headers.common['Authorization'] = `Bearer ${newToken}`;
+      setToken(newToken);
+      setUser(userData);
+    } catch (error) {
+      throw error;
+    }
   };
 
   const register = async (userData: any) => {
-    const response = await api.post('/auth/register', userData);
-    return response.data;
+    try {
+      const response = await api.post('/auth/register', userData);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
   };
 
   const logout = async () => {
-    await AsyncStorage.removeItem('token');
-    await AsyncStorage.removeItem('user');
-    delete api.defaults.headers.common['Authorization'];
-    setToken(null);
-    setUser(null);
+    try {
+      await AsyncStorage.removeItem('cosmo_token');
+      await AsyncStorage.removeItem('cosmo_user');
+      delete api.defaults.headers.common['Authorization'];
+      setToken(null);
+      setUser(null);
+    } catch (error) {
+      console.log('Error logout:', error);
+    }
   };
 
   const updateUser = (userData: Partial<User>) => {
     if (user) {
       const updatedUser = { ...user, ...userData };
       setUser(updatedUser);
-      AsyncStorage.setItem('user', JSON.stringify(updatedUser));
+      AsyncStorage.setItem('cosmo_user', JSON.stringify(updatedUser));
     }
   };
 
@@ -92,9 +103,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     try {
       const response = await api.get('/users/profile');
       setUser(response.data);
-      await AsyncStorage.setItem('user', JSON.stringify(response.data));
+      await AsyncStorage.setItem('cosmo_user', JSON.stringify(response.data));
     } catch (error) {
-      console.error('Error refreshing user:', error);
+      console.log('Error refreshing user:', error);
     }
   };
 
