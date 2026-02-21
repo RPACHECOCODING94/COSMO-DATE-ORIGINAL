@@ -591,6 +591,9 @@ async def create_date_request(date_req: DateRequestCreate, current_user: dict = 
     }
     await db.date_requests.insert_one(date_record)
     
+    # Remove MongoDB's _id before returning
+    date_record.pop("_id", None)
+    
     return {"message": "Solicitud de cita enviada", "date_request": date_record}
 
 @api_router.get("/dates")
