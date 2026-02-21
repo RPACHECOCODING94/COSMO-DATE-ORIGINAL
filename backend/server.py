@@ -528,6 +528,9 @@ async def send_message(message: MessageCreate, current_user: dict = Depends(get_
     }
     await db.messages.insert_one(msg_record)
     
+    # Remove MongoDB's _id before returning
+    msg_record.pop("_id", None)
+    
     return {"message": "Mensaje enviado", "data": msg_record}
 
 @api_router.get("/messages/{match_id}")
