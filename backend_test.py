@@ -32,6 +32,11 @@ class CosmoDateAPITester:
         self.match_id = None
         self.ticket_id = None
         
+        # Generate unique identifiers for this test run
+        self.timestamp = int(time.time())
+        self.user1_email = f"juan{self.timestamp}@test.com"
+        self.user2_email = f"maria{self.timestamp}@test.com"
+        
     def test_health_check(self):
         """Test basic health check endpoints"""
         logger.info("Testing health check endpoints...")
