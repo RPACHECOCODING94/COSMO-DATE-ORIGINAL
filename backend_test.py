@@ -162,7 +162,7 @@ class CosmoDateAPITester:
         assert response.status_code == 200, f"Get profile failed: {response.text}"
         
         result = response.json()
-        assert result["email"] == "juan@test.com", "Should return correct user data"
+        assert result["email"] == self.user1_email, "Should return correct user data"
         assert result["zodiac_sign"] == "Taurus", "Should include zodiac sign"
         assert "password" not in result, "Password should not be included"
         
