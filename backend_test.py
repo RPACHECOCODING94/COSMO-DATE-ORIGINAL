@@ -52,13 +52,16 @@ class CosmoDateAPITester:
         """Test user registration with various scenarios"""
         logger.info("Testing user registration...")
         
+        # Generate unique identifiers for this test run
+        timestamp = int(time.time())
+        
         # Valid registration data for Juan (Taurus - May 15)
         valid_user1_data = {
             "full_name": "Juan Perez Garcia",
             "date_of_birth": "1995-05-15",
-            "curp": "PEGJ950515HSRNRN09",
-            "email": "juan@test.com",
-            "phone": "6621234567",
+            "curp": f"PEGJ950515HSRNRN{timestamp%100:02d}",
+            "email": f"juan{timestamp}@test.com",
+            "phone": f"662123{timestamp%10000:04d}",
             "password": "Test1234",
             "profile_photo": "data:image/jpeg;base64,/9j/4AAQSkZJRg==",
             "gender": "masculino",
