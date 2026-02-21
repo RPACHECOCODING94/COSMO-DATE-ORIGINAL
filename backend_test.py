@@ -140,9 +140,9 @@ class CosmoDateAPITester:
         
         print("✅ User login working - JWT token generated")
         
-        # Test invalid credentials
+        # Test invalid login
         invalid_login = {
-            "email": "juan@test.com",
+            "email": self.user1_email,
             "password": "wrongpassword"
         }
         
