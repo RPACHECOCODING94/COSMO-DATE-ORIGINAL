@@ -65,7 +65,7 @@ class CosmoDateAPITester:
             "full_name": "Juan Perez Garcia",
             "date_of_birth": "1995-05-15",
             "curp": f"PEGJ950515HSRNRN{timestamp%100:02d}",
-            "email": f"juan{timestamp}@test.com",
+            "email": self.user1_email,
             "phone": f"662123{timestamp%10000:04d}",
             "password": "Test1234",
             "profile_photo": "data:image/jpeg;base64,/9j/4AAQSkZJRg==",
