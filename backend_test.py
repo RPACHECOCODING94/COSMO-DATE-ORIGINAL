@@ -124,7 +124,7 @@ class CosmoDateAPITester:
         
         # Valid login
         login_data = {
-            "email": "juan@test.com",
+            "email": self.user1_email,
             "password": "Test1234"
         }
         
