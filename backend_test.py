@@ -215,7 +215,7 @@ class CosmoDateAPITester:
         
         # Login second user
         login_data = {
-            "email": "maria@test.com",
+            "email": self.user2_email,
             "password": "Maria123"
         }
         
