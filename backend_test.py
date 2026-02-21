@@ -196,9 +196,9 @@ class CosmoDateAPITester:
         user2_data = {
             "full_name": "Maria Lopez",
             "date_of_birth": "1996-08-05",
-            "curp": "LOMA960805MSRRPR08",
-            "email": "maria@test.com",
-            "phone": "6627654321",
+            "curp": f"LOMA960805MSRRPR{self.timestamp%100:02d}",
+            "email": self.user2_email,
+            "phone": f"662765{self.timestamp%10000:04d}",
             "password": "Maria123",
             "profile_photo": "data:image/jpeg;base64,/9j/4AAQSkZJRg==",
             "gender": "femenino",
