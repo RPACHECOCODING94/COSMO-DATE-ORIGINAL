@@ -320,7 +320,7 @@ class CosmoDateAPITester:
         result = response.json()
         assert len(result["matches"]) == 1, "Should have 1 match"
         match = result["matches"][0]
-        assert match["user"]["email"] == "juan@test.com", "Should show Juan as the match"
+        assert match["user"]["email"] == self.user1_email, "Should show Juan as the match"
         
         print("✅ Get matches working for both users")
 
