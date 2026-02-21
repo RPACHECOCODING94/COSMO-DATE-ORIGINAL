@@ -23,7 +23,5 @@
       "purpose": "any maskable"
     }
   ],
-  "categories": ["social", "lifestyle"],
-  "screenshots": [],
-  "prefer_related_applications": false
+  "categories": ["social", "lifestyle"]
 }
