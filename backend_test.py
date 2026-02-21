@@ -309,7 +309,7 @@ class CosmoDateAPITester:
         
         match = result["matches"][0]
         assert match["match_id"] == self.match_id, "Should return correct match ID"
-        assert match["user"]["email"] == "maria@test.com", "Should show Maria as the match"
+        assert match["user"]["email"] == self.user2_email, "Should show Maria as the match"
         
         # Test for User 2
         headers2 = {"Authorization": f"Bearer {self.user2_token}"}
